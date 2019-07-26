@@ -6,8 +6,16 @@ set -e
 # remove fixed relesever variable present in the hanscode boxes
 sudo rm -f /etc/yum/vars/releasever
 
+sudo yum -y update ca-certificates
+sudo yum -y update curl
+
 # enable EPEL
 sudo yum -y install epel-release
+
+sudo sed -i "s/mirrorlist=https/mirrorlist=http/" /etc/yum.repos.d/epel.repo
+
+sudo yum -y install cmake3
+sudo ln -s /usr/bin/cmake3 /usr/bin/cmake
 
 # install all required packages for rocksdb that are available through yum
 sudo yum -y install openssl java-1.7.0-openjdk-devel zlib-devel bzip2-devel lz4-devel snappy-devel libzstd-devel jemalloc-devel

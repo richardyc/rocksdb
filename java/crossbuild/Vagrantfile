@@ -17,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider "virtualbox" do |v|
     v.memory = 2048
     v.cpus = 4
-    v.customize ["modifyvm", :id, "--nictype1", "virtio" ]
+    v.customize ["modifyvm", :id, "--nictype1", "virtio", "--memory", "4096" ]
   end
 
   config.vm.provision :shell, path: "build-linux-centos.sh"
